@@ -26,7 +26,7 @@ public class MyTeleop extends LinearOpMode {
         left_drive = hardwareMap.get(DcMotor.class, "left_drive");
         right_drive = hardwareMap.get(DcMotor.class, "right_drive");
 
-        left_drive.setDirection(DcMotor.Direction.FORWARD);
+        right_drive.setDirection(DcMotor.Direction.REVERSE);
 //         thisIsAMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         // Define and initialize ALL installed servos.
@@ -34,7 +34,7 @@ public class MyTeleop extends LinearOpMode {
         thisIsAServo.setPosition(SERVO_INIT_POS);
 
         // Send telemetry message to signify robot waiting;
-        telemetry.addData(">", "Robot Ready.  Press Play.");    //
+        telemetry.addData(">", "Robot Ready.  Press Play.");
         telemetry.update();
 
         // Wait for the game to start (driver presses PLAY)
@@ -44,8 +44,8 @@ public class MyTeleop extends LinearOpMode {
         while (opModeIsActive()) {
 
             //Gamepad input is built into LinearOpMode
-            left_drive.setPower(gamepad1.right_stick_y);
-            right_drive.setPower(gamepad1.left_stick_y);
+            left_drive.setPower(gamepad1.left_stick_y * 0.5);
+            right_drive.setPower(gamepad1.right_stick_y * 0.5);
 
             if(gamepad1.dpad_up){
                 servoControl += SERVO_SPEED;
